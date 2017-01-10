@@ -3,19 +3,41 @@ Trigger Go's background job by Rails Endpoint
 
 ## TODO
 
-- [ ] Init API and Worker structure
-- [ ] Init Rails API and prepare `/hello` endpoint
-- [ ] Docker Compose provision
-- [ ] Enqueue the job with PING message
-- [ ] Process the job in background with Go
-- [ ] Add simple UI for demo
+- [X] Init API and Worker structure
+- [X] Init Rails API and prepare `/ping` endpoint
+- [X] Docker Compose provision
+- [X] Enqueue the job with PING message
+- [X] Process the job in background with Go
+- [X] Add simple UI for demo (bash scripts)
 - [ ] Simple performce test script
 - [ ] Demo should described in README
 - [ ] Send demo project back to guys
 
 ## Guide
 
-> TODO
+### Prerequirements
+
+For launching you need:
+
+- Unix like shell
+- Docker
+- Docker Compose
+
+### Provisioning
+
+For get all this stuff up and running run:
+
+```
+cd <~/path/to/justhello>
+$ ./run.sh
+```
+
+This will download all required containers, build the images with apps,
+and run in foreground next services:
+
+- Redis server
+- API (api/ folder)
+- Worker (worker/ folder)
 
 ### Redis
 

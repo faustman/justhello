@@ -33,6 +33,7 @@ func main() {
 
 	// Map the name of jobs to handler functions
 	pool.Job("ping", (*Context).Pong)
+	pool.Job("message", (*Context).ProcessMessage)
 
 	// Start processing jobs
 	pool.Start()
@@ -59,7 +60,15 @@ func (c *Context) Pong(job *work.Job) error {
 		return err
 	}
 
-	log.Println("PONG requestId: ", requestId)
+	log.Println("PONG requestId:", requestId)
+
+	return nil
+}
+
+func (c *Context) ProcessMessage(job *work.Job) error {
+	message := job.ArgString("message")
+
+	log.Println("GOT MESSAGE:", message)
 
 	return nil
 }

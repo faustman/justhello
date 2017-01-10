@@ -10,9 +10,17 @@ module Worker
         def ping!(request_id = nil)
             @job = Job.new('ping', requestId: request_id)
 
+            # TODO: extract to the method
             @redis.lpush(self.job_key('ping'), @job)
         end
 
+        def enqueue(message)
+            @job = Job.new('message', message: message)
+
+            @redis.lpush(self.job_key('message'), @job)
+        end
+
+        # TODO: move this to the Job class
         def job_key(job_name)
             "#{@scope}:jobs:#{job_name}"
         end
