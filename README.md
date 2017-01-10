@@ -39,6 +39,25 @@ and run in foreground next services:
 - API (api/ folder)
 - Worker (worker/ folder)
 
+### Testing
+
+After provisioning just open the separate shell and trigger the http://localhsot:3000 enpoints:
+
+ping the worker
+
+```
+$ ./ping.sh
+```
+
+
+send message to the worker
+
+```
+$ ./hello.sh world
+```
+
+The Worker will print results into the stdout.
+
 ### Redis
 
 launch redis-cli:
