@@ -1,5 +1,15 @@
 version: '2'
 services:
+    api:
+        build: api/
+        ports:
+            - "3000:3000"
+        environment:
+            - REDIS_URL=redis://redis
+    worker:
+        build: worker/
+        environment:
+            - REDIS_URL=redis://redis
     redis:
         image: "redis:alpine"
         ports:

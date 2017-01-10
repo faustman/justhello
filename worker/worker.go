@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"github.com/garyburd/redigo/redis"
 	"github.com/gocraft/work"
+	"log"
 	"os"
 	"os/signal"
 )
@@ -14,7 +14,7 @@ var redisPool = &redis.Pool{
 	MaxIdle:   5,
 	Wait:      true,
 	Dial: func() (redis.Conn, error) {
-		return redis.Dial("tcp", ":6379")
+		return redis.DialURL(os.Getenv("REDIS_URL"))
 	},
 }
 
@@ -47,16 +47,17 @@ func main() {
 }
 
 func (c *Context) Log(job *work.Job, next work.NextMiddlewareFunc) error {
-	fmt.Println("Starting job: ", job.Name)
+	log.Println("Starting job: ", job.Name)
 	return next()
 }
 
 func (c *Context) Pong(job *work.Job) error {
+	// not sure what is that for..
 	if err := job.ArgError(); err != nil {
 		return err
 	}
 
-	fmt.Println("PONG")
+	log.Println("PONG")
 
 	return nil
 }
