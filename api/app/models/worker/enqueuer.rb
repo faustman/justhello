@@ -7,8 +7,8 @@ module Worker
             @scope = options
         end
 
-        def ping!
-            @job = Job.new('ping')
+        def ping!(request_id = nil)
+            @job = Job.new('ping', requestId: request_id)
 
             @redis.lpush(self.job_key('ping'), @job)
         end

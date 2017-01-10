@@ -52,12 +52,14 @@ func (c *Context) Log(job *work.Job, next work.NextMiddlewareFunc) error {
 }
 
 func (c *Context) Pong(job *work.Job) error {
+	requestId := job.ArgString("requestId")
+
 	// not sure what is that for..
 	if err := job.ArgError(); err != nil {
 		return err
 	}
 
-	log.Println("PONG")
+	log.Println("PONG requestId: ", requestId)
 
 	return nil
 }

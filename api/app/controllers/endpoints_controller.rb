@@ -5,7 +5,7 @@ class EndpointsController < ApplicationController
       @redis = Redis.new
       @worker = Worker::Enqueuer.new(@redis, "JustHello")
 
-      @worker.ping!
+      @worker.ping! request.uuid
 
       render plain: 'PONG'
   end
