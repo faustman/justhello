@@ -10,7 +10,7 @@ Trigger Go's background job by Rails Endpoint
 - [X] Process the job in background with Go
 - [X] Add simple UI for demo (bash scripts)
 - [ ] Simple performce test script
-- [ ] Demo should described in README
+- [X] Demo should described in README (Guide)
 - [ ] Send demo project back to guys
 
 ## Guide
